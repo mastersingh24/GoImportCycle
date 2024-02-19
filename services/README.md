@@ -15,3 +15,10 @@ The However both the Message Server and the API Server also Try to implement fun
 
 Other Branches in this repo show how to solve the problem using dependency injection and interfaces. 
 
+
+## Running the Code
+
+```bash
+cd services/agent 
+go run main.go
+```
