@@ -2,7 +2,7 @@ package message
 
 import (
 	// This is 1/2 of the Dependency Issue (Import Cycle)
-	api "GoImportCycle/services/api"
+	api "GoImportCycle/services/agent/api"
 	"context"
 	"fmt"
 	"sync"
