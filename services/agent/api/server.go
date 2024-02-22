@@ -7,12 +7,13 @@ import (
 	"time"
 
 	// This is 1/2 of the Dependency Issue (Import Cycle)
-	msg "GoImportCycle/services/agent/message"
+	//msg "GoImportCycle/services/agent/message"
 )
 
 type APIServer struct {
 	Name string
 	Run  bool
+	InboundFromAPIServer func()
 }
 
 func NewApiServer(name string) *APIServer {
@@ -24,11 +25,11 @@ func NewApiServer(name string) *APIServer {
 
 func (p *APIServer) Start(ctx context.Context, wg *sync.WaitGroup) {
 	defer wg.Done()
-	m2 := msg.NewMsgServer("Msg Server #2") // Create API Server using Dependency
+	//m2 := msg.NewMsgServer("Msg Server #2") // Create API Server using Dependency
 	for p.Run != false {
 		fmt.Println(p.Name)         // Print Server Name
 		time.Sleep(time.Second * 1) // Sleep for 1 Second
-		m2.InboundFromAPIServer()   // Try and use Dependency from API Package
+		p.InboundFromAPIServer()   // Try and use Dependency from API Package
 	}
 	return
 }
