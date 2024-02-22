@@ -15,10 +15,24 @@ type Agent struct {
 }
 
 func NewAgent(ctx context.Context) *Agent {
+
+	a:= &api.APIServer{
+		Name: "API Server",
+		Run: true,
+	}
+
+	m:= &msg.MSGServer{
+		Name: "Message Server",
+		Run: true,
+	}
+
+	a.Msg = m
+	m.API = a
+
 	return &Agent{
 		ctx: ctx,
-		API: api.NewApiServer("API Server"),
-		MSG: msg.NewMsgServer("Message Server"),
+		API: a,
+		MSG: m,
 	}
 }
 
